@@ -1,0 +1,15 @@
+**/__pycache__
+**/*.pyc
+**/.git
+**/.gitignore
+**/node_modules
+**/.vscode
+**/.idea
+**/*.log
+**/.env.local
+**/dist
+**/.mypy_cache
+**/.pytest_cache
+**/*.egg-info
+frontend/node_modules
+backend/tests
