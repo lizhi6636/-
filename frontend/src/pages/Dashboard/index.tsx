@@ -161,6 +161,7 @@ export default function DashboardPage() {
               rowKey="id"
               size="small"
               pagination={false}
+              scroll={{ x: 400 }}
               columns={[
                 { title: '代码', dataIndex: 'stock_code', width: 90 },
                 { title: '名称', dataIndex: 'stock_name', width: 100 },

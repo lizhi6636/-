@@ -17,11 +17,20 @@ const menuItems = [
   { key: '/learn', icon: <ReadOutlined />, label: '量化学院' },
 ];
 
-export default function SideMenu() {
+interface Props {
+  onClick?: () => void;
+}
+
+export default function SideMenu({ onClick }: Props) {
   const navigate = useNavigate();
   const location = useLocation();
 
   const selectedKey = '/' + location.pathname.split('/')[1];
+
+  const handleClick = ({ key }: { key: string }) => {
+    navigate(key);
+    if (onClick) onClick();
+  };
 
   return (
     <Menu
@@ -29,7 +38,7 @@ export default function SideMenu() {
       mode="inline"
       selectedKeys={[selectedKey === '/' ? '/' : selectedKey]}
       items={menuItems}
-      onClick={({ key }) => navigate(key)}
+      onClick={handleClick}
       style={{ marginTop: 8 }}
     />
   );

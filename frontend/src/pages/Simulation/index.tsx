@@ -192,7 +192,7 @@ export default function SimulationPage() {
               {
                 key: 'positions', label: `持仓 (${positions.length})`,
                 children: (
-                  <Table dataSource={positions} rowKey="id" size="small" pagination={false}
+                  <Table dataSource={positions} rowKey="id" size="small" pagination={false} scroll={{ x: 650 }}
                     columns={[
                       { title: '代码', dataIndex: 'stock_code', width: 80 },
                       { title: '名称', dataIndex: 'stock_name', width: 90, render: (v: string, r: any) => v || quotes[r.stock_code]?.name || '-' },

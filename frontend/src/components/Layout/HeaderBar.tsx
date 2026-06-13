@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
-import { Layout, Space, Badge, Dropdown, Avatar, Typography } from 'antd';
-import { UserOutlined, LogoutOutlined } from '@ant-design/icons';
+import { Layout, Space, Badge, Dropdown, Avatar, Typography, Button } from 'antd';
+import { UserOutlined, LogoutOutlined, MenuOutlined } from '@ant-design/icons';
 import { useAuthStore } from '../../store/authSlice';
 import { useClockStore } from '../../store/clockSlice';
 import { dashboardApi } from '../../api/dashboard';
@@ -8,7 +8,12 @@ import { dashboardApi } from '../../api/dashboard';
 const { Header } = Layout;
 const { Text } = Typography;
 
-export default function HeaderBar() {
+interface Props {
+  isMobile?: boolean;
+  onMenuClick?: () => void;
+}
+
+export default function HeaderBar({ isMobile, onMenuClick }: Props) {
   const { user, logout } = useAuthStore();
   const { status, setStatus } = useClockStore();
 
@@ -32,7 +37,7 @@ export default function HeaderBar() {
     <Header
       style={{
         background: '#fff',
-        padding: '0 24px',
+        padding: isMobile ? '0 12px' : '0 24px',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
@@ -41,6 +46,14 @@ export default function HeaderBar() {
       }}
     >
       <Space>
+        {isMobile && (
+          <Button
+            type="text"
+            icon={<MenuOutlined />}
+            onClick={onMenuClick}
+            style={{ marginRight: 8 }}
+          />
+        )}
         <Badge
           status={status?.is_trading ? 'processing' : 'default'}
           color={tradingColor}
